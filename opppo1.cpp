@@ -14,21 +14,19 @@ protected:
     string country;
 
 public:
-    Vehicle(int p, string c) {
-        power = p;
-        country = c;
-    }
+    Vehicle(int p, const string& c)
+        : power(p), country(c) {}
 
     virtual void print() {
         cout << "Power: " << power
             << ", Country: " << country;
     }
 
-    virtual bool check(string parameter, string operation, int value) {
+    virtual bool check(const string& parameter, const string& operation, int value) {
         return false;
     }
 
-    virtual bool checkCountry(string operation, string value) {
+    virtual bool checkCountry(const string& operation, const string& value) {
         return false;
     }
 
@@ -42,10 +40,8 @@ private:
     int load;
 
 public:
-    Truck(int p, int l, string c)
-        : Vehicle(p, c) {
-        load = l;
-    }
+    Truck(int p, int l, const string& c)
+        : Vehicle(p, c), load(l) {}
 
     void print() override {
         cout << "Truck: "
@@ -55,7 +51,7 @@ public:
             << endl;
     }
 
-    bool check(string parameter, string operation, int value) override {
+    bool check(const string& parameter, const string& operation, int value) override {
 
         int x = 0;
 
@@ -80,7 +76,7 @@ public:
         return false;
     }
 
-    bool checkCountry(string operation, string value) override {
+    bool checkCountry(const string& operation, const string& value) override {
         if (operation == "==")
             return country == value;
 
@@ -98,10 +94,8 @@ private:
     short passengers;
 
 public:
-    Bus(int p, short pass, string c)
-        : Vehicle(p, c) {
-        passengers = pass;
-    }
+    Bus(int p, short pass, const string& c)
+        : Vehicle(p, c), passengers(pass) {}
 
     void print() override {
         cout << "Bus: "
@@ -111,7 +105,7 @@ public:
             << endl;
     }
 
-    bool check(string parameter, string operation, int value) override {
+    bool check(const string& parameter, const string& operation, int value) override {
 
         int x = 0;
 
@@ -136,7 +130,7 @@ public:
         return false;
     }
 
-    bool checkCountry(string operation, string value) override {
+    bool checkCountry(const string& operation, const string& value) override {
         if (operation == "==")
             return country == value;
 
@@ -155,11 +149,8 @@ private:
     int maxSpeed;
 
 public:
-    PassengerCar(int p, int d, int s, string c)
-        : Vehicle(p, c) {
-        doors = d;
-        maxSpeed = s;
-    }
+    PassengerCar(int p, int d, int s, const string& c)
+        : Vehicle(p, c), doors(d), maxSpeed(s) {}
 
     void print() override {
         cout << "Passenger car: "
@@ -170,7 +161,7 @@ public:
             << endl;
     }
 
-    bool check(string parameter, string operation, int value) override {
+    bool check(const string& parameter, const string& operation, int value) override {
 
         int x = 0;
 
@@ -197,7 +188,7 @@ public:
         return false;
     }
 
-    bool checkCountry(string operation, string value) override {
+    bool checkCountry(const string& operation, const string& value) override {
         if (operation == "==")
             return country == value;
 
@@ -224,16 +215,16 @@ public:
 
     // Показать все автомобили
     void print() {
-        for (int i = 0; i < vehicles.size(); i++) {
+        for (size_t i = 0; i < vehicles.size(); i++) {
             vehicles[i]->print();
         }
     }
 
 
     // Удалить автомобили по числовому условию
-    void remove(string parameter, string operation, int value) {
+    void remove(const string& parameter, const string& operation, int value) {
 
-        for (int i = 0; i < vehicles.size(); ) {
+        for (size_t i = 0; i < vehicles.size(); ) {
 
             if (vehicles[i]->check(parameter, operation, value)) {
 
@@ -249,9 +240,9 @@ public:
 
 
     // Удалить автомобили по стране
-    void removeCountry(string operation, string value) {
+    void removeCountry(const string& operation, const string& value) {
 
-        for (int i = 0; i < vehicles.size(); ) {
+        for (size_t i = 0; i < vehicles.size(); ) {
 
             if (vehicles[i]->checkCountry(operation, value)) {
 
@@ -269,7 +260,7 @@ public:
     // Освободить память
     ~Container() {
 
-        for (int i = 0; i < vehicles.size(); i++) {
+        for (size_t i = 0; i < vehicles.size(); i++) {
             delete vehicles[i];
         }
     }
