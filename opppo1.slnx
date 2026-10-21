@@ -1,0 +1,12 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="opppo1/opppo1.vcxproj" Id="ed784e89-5670-4c5e-ab1d-d223df25255d">
+    <BuildType Solution="Debug|x64" Project="Release" />
+  </Project>
+  <Project Path="Test/Test.vcxproj" Id="2c4ab25c-9289-4b2b-a360-dc08976782c3">
+    <BuildType Solution="Debug|x64" Project="Release" />
+  </Project>
+</Solution>
